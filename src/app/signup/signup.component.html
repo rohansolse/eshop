@@ -2,17 +2,18 @@
     <form class="form-signin border rounded" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <img class="mb-4" src="assets/cart.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <input type="text" id="Name" formControlName="Name" class="form-control mb-3" placeholder="Enter Your Name" required autofocus>
-        <input type="email" id="Email" formControlName="Email" class="form-control" placeholder="Enter Your Email address" required>
-        <input type="password" id="Password" formControlName="Password" class="form-control" placeholder="Enter Password" required>
-        <input type="number" id="Phone" formControlName="Phone" class="form-control mt-3 mb-3" placeholder="Enter Your Phone" required>
+        <hr>
+        <p *ngIf="userCreated" class="alert alert-success">{{userCreated}}</p>
+        <p *ngIf="userExist" class="alert alert-danger">{{userExist}}</p>
+        <input type="text" id="name" formControlName="name" class="form-control mb-3" placeholder="Enter Your Name" required autofocus>
+        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter Your Email address" required>
+        <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter Password" required>
+        <input type="number" id="phone" formControlName="phone" class="form-control mt-3 mb-3" placeholder="Enter Your Phone" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
         <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!profileForm.valid">Sign in</button>
-        <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p> -->
     </form>
 </div>
