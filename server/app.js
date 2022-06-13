@@ -11,7 +11,8 @@ const { summary } = require('./api/controllers/orders');
 const { adminAuth } = require('./api/middleware/check-auth');
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGO_URL_DEV);
+mongoose.connect(process.env.MONGO_URL_DEV,
+    { useNewUrlParser: true });
 
 const app = express();
 // Log request data
@@ -40,7 +41,6 @@ app.use((req, res, next) => {
     console.log({ body: req.body });
     console.log({ query: req.query });
     console.log({ params: req.params });
-
     next();
 });
 

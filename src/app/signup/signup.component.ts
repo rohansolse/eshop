@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -19,9 +20,13 @@ export class SignupComponent implements OnInit {
     phone: new FormControl(''),
   });
 
-  constructor(private userservice: UserService) { }
+  constructor(private userservice: UserService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateTOLogin() {
+    this.router.navigate(['/login']);
   }
 
   onSubmit() {
@@ -31,6 +36,8 @@ export class SignupComponent implements OnInit {
         this.data = result;
         this.userCreated = this.data.message;
         this.userExist = undefined
+        this.profileForm.reset();
+        this.navigateTOLogin();
       },
       error: (response: HttpErrorResponse) => {
         this.userExist = response.error.message;
